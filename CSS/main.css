@@ -2,19 +2,28 @@ body {
     font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
-    background: linear-gradient(to right, #6a3093, #a044ff);
+    background-image: url(https://avatars.mds.yandex.net/i?id=75dfdc0f98a6e3f10dc8d6ac8fef1685b0dd2c89-9854613-images-thumbs&n=13);
+    position: relative;
     color: #000000;
+    background-size:cover;
+    background-repeat:no-repeat;
+    background-attachment: local;
 }
 
 h1 {
     text-align: center;
-    margin: 20px 0;
+    margin: 20px auto;
     color: #000000;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+    background: #50007094;
+    padding: 8px;
+    border-radius: 18px;
+    width: 400px;
+    display: block;
 }
 
 #filters {
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: rgba(126, 0, 120, 0.288);
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
@@ -34,6 +43,8 @@ h1 {
     padding: 20px;
     max-width: 1200px;
     margin: 0 auto;
+    background: linear-gradient(#6a30937a, #50007070);
+    border-radius: 15px;
 }
 
 label {
