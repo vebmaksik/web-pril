@@ -59,6 +59,15 @@
             const category = document.getElementById('category').value;
             const description = document.getElementById('description').value;
 
+            const selectedDate = new Date(date);
+            const currentDate = new Date();
+            currentDate.setHours(0, 0, 0, 0);
+            
+            if (selectedDate < currentDate) {
+            alert("Нельзя ставить событие на прошедшую дату!");
+            return;
+            }
+
             let events = JSON.parse(localStorage.getItem('events')) || [];
 
             events = events.map(event => {
