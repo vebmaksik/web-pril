@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Добавить Событие</title>
+    <link rel="stylesheet" href="/CSS/main.css">
+</head>
+<body>
+    <h1>Добавить Новое Событие</h1>
+
+    <form id="add-event-form">
+        <label for="name">Название:</label>
+        <input type="text" id="name" required><br><br>
+
+        <label for="date">Дата:</label>
+        <input type="date" id="date" required><br><br>
+
+        <label for="category">Категория:</label>
+        <select id="category" required>
+            <option value="Личные">Личные</option>
+            <option value="Рабочие">Рабочие</option>
+            <option value="Общественные">Общественные</option>
+        </select><br><br>
+
+        <label for="description">Описание:</label>
+        <textarea id="description" rows="4" cols="50"></textarea><br><br>
+
+        <button type="submit">Добавить Событие</button>
+        <a href="main.html">Отмена</a>
+    </form>
+
+    <script>
+        document.getElementById('add-event-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const name = document.getElementById('name').value;
+            const date = document.getElementById('date').value;
+            const category = document.getElementById('category').value;
+            const description = document.getElementById('description').value;
+
+            const eventData = {
+                id: Date.now(),
+                name: name,
+                date: date,
+                category: category,
+                description: description
+            };
+
+            let events = JSON.parse(localStorage.getItem('events')) || [];
+
+            events.push(eventData);
+
+            localStorage.setItem('events', JSON.stringify(events));
+
+            window.location.href = 'main.html';
+        });
+    </script>
+</body>
+</html>

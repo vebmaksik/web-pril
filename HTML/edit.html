@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Редактировать Событие</title>
+    <link rel="stylesheet" href="/CSS/main.css">
+</head>
+<body>
+    <h1>Редактировать Событие</h1>
+
+    <form id="edit-event-form">
+        <label for="name">Название:</label>
+        <input type="text" id="name" required><br><br>
+
+        <label for="date">Дата:</label>
+        <input type="date" id="date" required><br><br>
+
+        <label for="category">Категория:</label>
+        <select id="category" required>
+            <option value="Личные">Личные</option>
+            <option value="Рабочие">Рабочие</option>
+            <option value="Общественные">Общественные</option>
+        </select><br><br>
+
+        <label for="description">Описание:</label>
+        <textarea id="description" rows="4" cols="50"></textarea><br><br>
+
+        <button type="submit">Сохранить Изменения</button>
+        <button type="button" id="delete-event-button">Удалить Событие</button>
+        <a href="main.html">Отмена</a>
+    </form>
+
+    <script>
+        const eventId = new URLSearchParams(window.location.search).get('id');
+        const form = document.getElementById('edit-event-form');
+        const deleteButton = document.getElementById('delete-event-button');
+
+        window.addEventListener('load', function() {
+            let events = JSON.parse(localStorage.getItem('events')) || [];
+            const eventToEdit = events.find(event => event.id == eventId);
+
+            if (eventToEdit) {
+                document.getElementById('name').value = eventToEdit.name;
+                document.getElementById('date').value = eventToEdit.date;
+                document.getElementById('category').value = eventToEdit.category;
+                document.getElementById('description').value = eventToEdit.description;
+            } else {
+                alert('Событие не найдено!');
+                window.location.href = 'main.html';
+            }
+        });
+
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const name = document.getElementById('name').value;
+            const date = document.getElementById('date').value;
+            const category = document.getElementById('category').value;
+            const description = document.getElementById('description').value;
+
+            let events = JSON.parse(localStorage.getItem('events')) || [];
+
+            events = events.map(event => {
+                if (event.id == eventId) {
+                    return {
+                        id: eventId,
+                        name: name,
+                        date: date,
+                        category: category,
+                        description: description
+                    };
+                }
+                return event;
+            });
+
+            localStorage.setItem('events', JSON.stringify(events));
+            window.location.href = 'main.html';
+        });
+
+        deleteButton.addEventListener('click', function() {
+            if (confirm('Вы уверены, что хотите удалить это событие?')) {
+                let events = JSON.parse(localStorage.getItem('events')) || [];
+                events = events.filter(event => event.id != eventId);
+                localStorage.setItem('events', JSON.stringify(events));
+                window.location.href = 'main.html';
+            }
+        });
+    </script>
+</body>
+</html>

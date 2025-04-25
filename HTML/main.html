@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Планировщик Событий</title>
+    <link rel="stylesheet" href="/CSS/main.css">
+</head>
+<body>
+    <h1>Планировщик Событий</h1>
+
+    <div id="filters">
+        <label for="categoryFilter">Категория:</label>
+        <select id="categoryFilter">
+            <option value="all">Все</option>
+            <option value="Личные">Личные</option>
+            <option value="Рабочие">Рабочие</option>
+            <option value="Общественные">Общественные</option>
+        </select>
+
+        <label for="dateSort">Сортировать по дате:</label>
+        <select id="dateSort">
+            <option value="closest">Ближайшая дата</option>
+            <option value="furthest">Дальняя дата</option>
+        </select>
+    </div>
+
+    <div id="event-list">
+    </div>
+
+    <button id="add-event-button">Добавить Событие</button>
+
+    <script src="/JS/main.js"></script>
+</body>
+</html>
